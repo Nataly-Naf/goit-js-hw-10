@@ -1,3 +1,4 @@
+
 import { refs } from ".."
 
 
@@ -36,7 +37,14 @@ export function fetchCatByBreed(breedId) {
     .then((data) => {
         return data.map(() =>
         {
-          return refs.select.insertAdjacentHTML('afterend', createMarkup(data))
+            
+            if (refs.descr) {
+                refs.descr.innerHTML = " ";
+                console.log(refs.descr)
+                 
+            }
+            
+           return refs.select.insertAdjacentHTML('afterend', createMarkup(data))
         })})
 }
 
@@ -44,7 +52,7 @@ function createMarkup(arr) {
     
     return arr.map((element)=>`<div class="cat-info">
       <img src="${element.url}" alt="" width="200" height />
-      <div class="text-descr">
+      <div class="cat-info">
         <h2 class="descr-name">${element.breeds[0].name}</h2>
         <h3 class="descr-text">${element.breeds[0].description}</h3>
       </div>
