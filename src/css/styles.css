@@ -1,14 +1,17 @@
 .cat-info {
   display: flex;
+  gap: 20px;
 }
-
-.descr-name {
+.cat-descr {
+  width: 300px;
 }
 
 .descr-text {
-  color: blue;
+  font-size: 14px;
+  font-weight: 400;
 }
 
-.cat-descr {
+.cat-img {
   width: 300px;
+  height: auto;
 }
