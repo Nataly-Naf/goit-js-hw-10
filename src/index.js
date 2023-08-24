@@ -37,6 +37,7 @@ fetchBreeds()
 refs.select.addEventListener('change', onOptionSubmit);
 
 function onOptionSubmit(event) {
+    
     const selectedValue = event.currentTarget.value;
     fetchCatByBreed(selectedValue) .then((data) => {
         return data.map(() =>
