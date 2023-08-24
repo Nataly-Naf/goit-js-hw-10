@@ -1,5 +1,7 @@
+import { refs } from "..";
 
-import { refs } from ".."
+
+
 const { Notify } = require("notiflix");
 
 
@@ -14,9 +16,7 @@ export function fetchBreeds() {
 
     })
     return fetch(`${baseURL}?${params}`)
-        // .then(response => { return response.json() })
-        // .then((data) => { (consol.log(data)) }
-        .then((resp) => {
+           .then((resp) => {
                       if (!resp.ok) {
              ( Notify.failure(`${resp.statusText}`))
             }
@@ -26,11 +26,11 @@ export function fetchBreeds() {
 }
 
 export function fetchCatByBreed(breedId) {
-    const breedIds = breedId;
-    const breedUrl = 'https://api.thecatapi.com/v1/images/search'
+    refs.loader.style.display = "block";   
+    
     return fetch(`https://api.thecatapi.com/v1/images/search?api_key=live_dbDbJqnTvZr0BDH9Co8mAYy9oHsrrkDXPCQwO90tvsGws3MQGSe2ul7QIaHBeS63&breed_ids=${breedId}`)
         .then((resp) => {
-            console.log(resp)
+         
               if (!resp.ok) {
              ( Notify.failure(`${resp.statusText}`))
             }

@@ -2,7 +2,7 @@ import { fetchBreeds, fetchCatByBreed } from "./js/cat-api";
 import SlimSelect from 'slim-select';
 import 'slim-select/dist/slimselect.css';
 
- const refs = {
+ export const refs = {
     select: document.querySelector('.breed-select'),
      descr: document.querySelector('.cat-info'),
      loader: document.querySelector('.loader'),
@@ -43,7 +43,7 @@ function onOptionSubmit(event) {
         return data.map(() =>
         {
                                   
-           return refs.descr.innerHTML=createMarkup(data)
+            refs.loader.style.display = "none"; return refs.descr.innerHTML=createMarkup(data)
         })})
 }
 function createMarkup(arr) {
