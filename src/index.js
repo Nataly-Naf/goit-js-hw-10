@@ -1,9 +1,12 @@
 import { fetchBreeds, fetchCatByBreed } from "./js/cat-api";
 import SlimSelect from 'slim-select';
 import 'slim-select/dist/slimselect.css';
+const { Notify } = require("notiflix");
  const refs = {
     select: document.querySelector('.breed-select'),
-    descr: document.querySelector('.cat-info')
+     descr: document.querySelector('.cat-info'),
+     loader: document.querySelector('.loader'),
+    error: document.querySelector ('.error')
 };
 
 // fetchBreeds()
@@ -27,7 +30,8 @@ fetchBreeds()
                   return `<option value="${breed.id}">${breed.name}</option>`
              })
              .join("");
-             refs.select.innerHTML = markup;
+         refs.select.innerHTML = markup;
+         refs.loader.style.display = "none"
    }
 
 refs.select.addEventListener('change', onOptionSubmit);
