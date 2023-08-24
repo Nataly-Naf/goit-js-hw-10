@@ -15,7 +15,7 @@ fetchBreeds()
 })
             refs.select.insertAdjacentHTML('beforeend', `<option value="${id}">${name}</option>`)
         })})
-        // refs.select.innerHTML=Element.name}))
+        
         console.dir(refs.select)
     
 refs.select.addEventListener('input', onOptionSubmit);

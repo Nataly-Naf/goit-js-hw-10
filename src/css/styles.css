@@ -1,0 +1,14 @@
+.cat-info {
+  display: flex;
+}
+
+.descr-name {
+}
+
+.descr-text {
+  color: blue;
+}
+
+.cat-descr {
+  width: 300px;
+}
