@@ -1,6 +1,7 @@
 import { fetchBreeds, fetchCatByBreed } from "./js/cat-api";
 import SlimSelect from 'slim-select';
 import 'slim-select/dist/slimselect.css';
+const { Notify } = require("notiflix");
 
  export const refs = {
     select: document.querySelector('.breed-select'),
@@ -24,6 +25,9 @@ fetchBreeds()
                select: '.breed-select'
           })
      })
+     .catch(error => {
+    Notify.failure(`${error}`)
+  });
      function renderBreeds(breeds) {
         const markup = breeds
              .map((breed) => {
@@ -37,14 +41,20 @@ fetchBreeds()
 refs.select.addEventListener('change', onOptionSubmit);
 
 function onOptionSubmit(event) {
-    
+     
     const selectedValue = event.currentTarget.value;
-    fetchCatByBreed(selectedValue) .then((data) => {
+     fetchCatByBreed(selectedValue).then((data) => {
+                            
         return data.map(() =>
-        {
-                                  
-            refs.loader.style.display = "none"; return refs.descr.innerHTML=createMarkup(data)
-        })})
+        {                                
+             refs.loader.style.display = "none";
+             return refs.descr.innerHTML = createMarkup(data)
+        })
+    })
+          .catch(error => {
+          console.log (error)
+               Notify.failure(`${error}`)
+  });
 }
 function createMarkup(arr) {
     
