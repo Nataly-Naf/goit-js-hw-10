@@ -44,12 +44,15 @@ function onOptionSubmit(event) {
      
     const selectedValue = event.currentTarget.value;
      fetchCatByBreed(selectedValue).then((data) => {
-                            
-        return data.map(() =>
-        {                                
-             refs.loader.style.display = "none";
-             return refs.descr.innerHTML = createMarkup(data)
-        })
+            refs.loader.style.display = "none";
+          if (data.length === 0) {
+               Notify.failure(`Error`)
+               refs.descr.innerHTML = "";
+               return 
+          }
+                         
+             refs.descr.innerHTML = createMarkup(data)
+        
     })
           .catch(error => {
           console.log (error)
@@ -59,7 +62,7 @@ function onOptionSubmit(event) {
 function createMarkup(arr) {
     
     return arr.map((element)=>`
-      <img class="cat-img" src="${element.url}" alt="" width="200" height />
+      <img class="cat-img" src="${element.url}" alt="" width="200" />
       <div class="cat-descr"> <h2 class="descr-name">${element.breeds[0].name}</h2>
         <h3 class="descr-text">${element.breeds[0].description}</h3>
     </div>` ).join('')
